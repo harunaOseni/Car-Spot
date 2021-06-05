@@ -9,35 +9,34 @@ const geolocateControlStyle = {
 
 const navControlStyle = {
   right: 10,
-  
 };
 
 function App() {
   const [viewport, setViewport] = useState({
-    width: "80vw",
-    height: "50vh",
+    width: "vw",
+    height: "100vh",
     latitude: 37.7577,
     longitude: -122.4376,
-    zoom: 19,
+    zoom: 18,
   });
 
   return (
-    <ReactMapGL
+    <ReactMapGL className="reactMap"
       mapStyle={"mapbox://styles/mapbox/satellite-v9"}
       {...viewport}
       mapboxApiAccessToken={
         "pk.eyJ1IjoiaGFydW5hLW9zZW5pIiwiYSI6ImNrcGhwbjZwZzEzdW0ydnAzZGg4dWhrdHcifQ.3evCFZs81httHiiPmIga6A"
       }
-      pitch={15}
+      pitch={14}
       onViewportChange={(nextViewport) => setViewport(nextViewport)}
     >
       <NavigationControl style={navControlStyle}  />
       <GeolocateControl
         style={geolocateControlStyle}
         positionOptions={{ enableHighAccuracy: true }}
-        trackUserLocation={true}
+        trackUserLocation={false}
         showAccuracyCircle={false}
-        auto
+        fitBoundsOptions={{maxZoom: 40}}
       />
     </ReactMapGL>
   );
